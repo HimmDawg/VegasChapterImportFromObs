@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using ScriptPortal.Vegas;
 using System.Diagnostics;
 using System.Text.Json;
+using System.IO;
 
 public class EntryPoint
 {
@@ -13,19 +14,20 @@ public class EntryPoint
 		_myVegas = vegas;
 		Media[] media = _myVegas.Project.MediaPool.GetSelectedMedia();
 
-		if (media == null)
-		{
-			MessageBox.Show("Please select one video media.");
-			return;
-		}
-
 		if (media.Length != 1)
 		{
-			MessageBox.Show("Please select ONLY one video media.");
+			MessageBox.Show("Please select *one* mp4 media.");
 			return;
 		}
 
 		string mediaFile = media[0].FilePath;
+
+		if (!IsMp4File(mediaFile))
+		{
+			MessageBox.Show("Please select one *mp4* media.");
+			return;
+		}
+
 		ChapterList chapters = GetChaptersFromMetadata(mediaFile);
 
 		if (chapters.Count == 0)
@@ -43,10 +45,16 @@ public class EntryPoint
 		MessageBox.Show(markers.Count + " markers added.");
 	}
 
+	private bool IsMp4File(string mediaFile)
+	{
+		string extension = Path.GetExtension(mediaFile).ToLower();
+		return extension == ".mp4";
+	}
+
 	private ChapterList GetChaptersFromMetadata(string filePath)
 	{
 		string metadata = RunFFProbe(filePath);
-		if (metadata != null)
+		if (!string.IsNullOrEmpty(metadata))
 		{
 			return JsonSerializer.Deserialize<ChapterList>(metadata);
 		}
@@ -157,4 +165,3 @@ public class Chapter
 		}
 	}
 }
-
