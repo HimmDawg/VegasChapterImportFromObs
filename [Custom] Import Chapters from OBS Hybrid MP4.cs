@@ -31,6 +31,7 @@ public class EntryPoint
 		if (chapters.Count == 0)
 		{
 			MessageBox.Show("No chapters found.");
+			return;
 		}
 
 		List<Marker> markers = ChaptersToMarkers(chapters);
