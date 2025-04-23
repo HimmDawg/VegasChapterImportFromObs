@@ -2,7 +2,7 @@
 This script takes a hybrid-mp4 file produced by Open Broadcaster Software (OBS) that has chapters added to it and imports those chapters into VEGAS Pro as markers.
 
 # What problem does this solve?
-VEGAS Pro needs support from third-party apps like _MediaInfo_ in order to import chapters and even then, the process was a little too involved just for importing chapters.
+VEGAS Pro needs support from third-party apps like _MediaInfo_ in order to import chapter markers from OBS and even then, the process was a little too involved just for importing chapters.
 With this, you can import chapters directly from within VEGAS Pro.
 
 # Setup
