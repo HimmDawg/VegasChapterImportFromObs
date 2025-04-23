@@ -9,7 +9,7 @@ With this, you can import chapters directly from within VEGAS Pro.
 - install `ffprobe` and add it to your PATH (e.g. use winget like: https://winstall.app/apps/Gyan.FFmpeg , it'll automatically add the executable to PATH)
 - download the `[Custom] Import Chapters from OBS Hybrid MP4.cs` script and the `[Custom] Import Chapters from OBS Hybrid MP4.cs.config`
     - you can rename the script, but make sure that the config file has the same name, followed by `.config`
-- place both files in either of the locations listed here https://help.magix-hub.com/video/vegas/21/en/content/topics/external/vegasscriptfaq.html#1.10
+- place both files in `C:\Program Files\VEGAS\VEGAS Pro 21.0\Script Menu` (if not available, choose either of the locations listed here https://help.magix-hub.com/video/vegas/21/en/content/topics/external/vegasscriptfaq.html#1.10)
 
 
 # How to use
