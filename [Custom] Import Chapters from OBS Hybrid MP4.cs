@@ -4,6 +4,7 @@ using ScriptPortal.Vegas;
 using System.Diagnostics;
 using System.Text.Json;
 using System.IO;
+using System;
 
 public class EntryPoint
 {
@@ -36,19 +37,18 @@ public class EntryPoint
 			return;
 		}
 
-		List<Marker> markers = ChaptersToMarkers(chapters);
+		Marker[] markers = ChaptersToMarkers(chapters);
 		foreach (Marker marker in markers)
 		{
 			_myVegas.Project.Markers.Add(marker);
 		}
 
-		MessageBox.Show(markers.Count + " markers added.");
+		MessageBox.Show(markers.Length + " markers added.");
 	}
 
 	private bool IsMp4File(string mediaFile)
 	{
-		string extension = Path.GetExtension(mediaFile).ToLower();
-		return extension == ".mp4";
+		return Path.GetExtension(mediaFile).Equals(".mp4", StringComparison.OrdinalIgnoreCase);
 	}
 
 	private ChapterList GetChaptersFromMetadata(string filePath)
@@ -81,15 +81,15 @@ public class EntryPoint
 		return output;
 	}
 
-	private List<Marker> ChaptersToMarkers(ChapterList chapters)
+	private Marker[] ChaptersToMarkers(ChapterList chapters)
 	{
-		List<Marker> result = new List<Marker>();
+		Marker[] result = new Marker[chapters.Count];
 		for (int i = 0; i < chapters.Count; i++)
 		{
 			Chapter chapter = chapters[i];
 			Timecode position = Timecode.FromMilliseconds(chapter.start);
 			Marker marker = new Marker(position);
-			result.Add(marker);
+			result[i] = marker;
 		}
 		return result;
 	}
@@ -97,7 +97,7 @@ public class EntryPoint
 
 public class ChapterList
 {
-	private Chapter[] _chapters = new Chapter[0];
+	private Chapter[] _chapters = Array.Empty<Chapter>();
 	public Chapter[] chapters
 	{
 		get
@@ -165,3 +165,4 @@ public class Chapter
 		}
 	}
 }
+
