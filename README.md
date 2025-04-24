@@ -2,14 +2,15 @@
 This script takes a hybrid-mp4 file produced by Open Broadcaster Software (OBS) that has chapters added to it and imports those chapters into VEGAS Pro as markers.
 
 # What problem does this solve?
-VEGAS Pro needs support from third-party apps like _MediaInfo_ in order to import chapters and even then, the process was a little too involved just for importing chapters.
+VEGAS Pro needs support from third-party apps like _MediaInfo_ in order to import chapter markers from OBS and even then, the process was a little too involved just for importing chapters.
 With this, you can import chapters directly from within VEGAS Pro.
 
 # Setup
 - install `ffprobe` and add it to your PATH (e.g. use winget like: https://winstall.app/apps/Gyan.FFmpeg , it'll automatically add the executable to PATH)
 - download the `[Custom] Import Chapters from OBS Hybrid MP4.cs` script and the `[Custom] Import Chapters from OBS Hybrid MP4.cs.config`
     - you can rename the script, but make sure that the config file has the same name, followed by `.config`
-- place both files in either of the locations listed here https://help.magix-hub.com/video/vegas/21/en/content/topics/external/vegasscriptfaq.html#1.10
+- place both files in `C:\Program Files\VEGAS\VEGAS Pro x.0\Script Menu`
+    - if not available, choose either of the locations listed here https://help.magix-hub.com/video/vegas/21/en/content/topics/external/vegasscriptfaq.html#1.10
 
 
 # How to use
